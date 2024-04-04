@@ -1,0 +1,28 @@
+
+<div class="create-div">
+  <button class="create" routerLink="/create">New User</button>
+</div>
+
+<div class="main">
+  <table class="table" border="1" cellPadding="0" cellSpacing="0">
+    <tr class="list">
+      <td>ID</td>
+      <td>NAME</td>
+      <td>EMAIL</td>
+      <td>ACTION</td>
+    </tr>
+  
+    @for (user of users$ | async; track user.id) {
+      <tr>
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td colspan="3">
+          <button class="button view" [routerLink]="['view', user.id]">View</button>
+          <button class="button delete" (click)="deleteUser(user.id)">Delete</button>
+          <button class="button edit" [routerLink]="['/create', user.id]">Edit</button>
+        </td>
+      </tr>
+    }
+  </table>
+</div>
